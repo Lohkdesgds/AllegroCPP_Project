@@ -161,6 +161,7 @@ int main()
 	Bitmap bmp(tmp, 1024, 0, ".jpg");
 	std::vector<Bitmap> dynamic_load_drop;
 	Font basicfont;
+	Font refdfont = basicfont.make_ref();
 	Transform trans;
 	Timer tima(1.0 / 30);
 	Menu menn({
