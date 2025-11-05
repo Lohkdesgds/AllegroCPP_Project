@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add the library
 add_subdirectory(AllegroCPP)
 
+
+
 # Create main example executable
 add_executable(hello_world examples/hello_world.cpp)
 
@@ -16,5 +18,18 @@ target_link_libraries(hello_world PRIVATE AllegroCPP)
 
 # Include your library's headers (for IDEs and builds)
 target_include_directories(hello_world PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/AllegroCPP/include
+)
+
+
+
+# Create second example executable
+add_executable(extra_test examples/old_test_must_update.cpp)
+
+# Link to your library
+target_link_libraries(extra_test PRIVATE AllegroCPP)
+
+# Include your library's headers (for IDEs and builds)
+target_include_directories(extra_test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/AllegroCPP/include
 )

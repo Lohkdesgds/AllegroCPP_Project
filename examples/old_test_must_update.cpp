@@ -7,20 +7,17 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
-#include <windows.h>
-#include <Richedit.h>
-#include <shellapi.h>
+#include <cmath>
 
 #undef min
 #undef max
 
 using namespace AllegroCPP;
 
-const std::string imgtest = "test.jpg";
-const std::string gif_path = "gif.gif";
-const std::string video_path = "video.ogv";
-const std::string msktest = "music.ogg";
+const std::string imgtest =    "data/test.jpg";
+const std::string gif_path =   "data/gif.gif";
+const std::string video_path = "data/video.ogv";
+const std::string msktest =    "data/music.ogg";
 
 void err_handler(char const* expr, char const* file, int line, char const* func)
 {
@@ -109,11 +106,11 @@ int main()
 	loggin << "Hello there" << std::endl;
 	loggin << "This is some logging\nHopefully\nthis breaks lines." << std::endl;
 
-	al_register_assert_handler(&err_handler);
-	al_register_trace_handler(&trace_handler);
-#ifdef _DEBUG
-	confsys.set("trace", "level", "debug"); // Can be one of debug, info, warn, error, none or empty. // https://github.com/liballeg/allegro5/blob/master/allegro5.cfg#L186
-#endif
+//	al_register_assert_handler(&err_handler);
+//	al_register_trace_handler(&trace_handler);
+//#ifdef _DEBUG
+//	confsys.set("trace", "level", "debug"); // Can be one of debug, info, warn, error, none or empty. // https://github.com/liballeg/allegro5/blob/master/allegro5.cfg#L186
+//#endif
 	confsys.set("image", "jpeg_quality_level", "95");
 	confsys.set("image", "png_compression_level ", "9");
 	//_test();
@@ -130,13 +127,13 @@ int main()
 
 	log << "Started log." << std::endl;
 
-	log << "Testing path stuff!" << std::endl;
-
-	Path path("C:\\Program Files\\Adobe\\");
-
-	path.make_canonical();
-
-	std::cout << path.c_str() << std::endl;
+//	log << "Testing path stuff!" << std::endl;
+//
+//	Path path("C:\\Program Files\\Adobe\\");
+//
+//	path.make_canonical();
+//
+//	std::cout << path.c_str() << std::endl;
 
 	log << "Creating display and stuff..." << std::endl;
 
@@ -175,7 +172,7 @@ int main()
 	Video vid(video_path);
 	Mouse fancy_mouse;
 
-	Event_drag_and_drop dnd(disp);
+	//Event_drag_and_drop dnd(disp);
 
 	mixer << vid_mixer;
 	mixer << oth_mixer;
@@ -189,7 +186,7 @@ int main()
 	log << "Preparing stuff..." << std::endl;
 
 	queue << disp;
-	queue << dnd;
+	//queue << dnd;
 	queue << tima;
 	queue << Event_keyboard();
 	queue << menn;
@@ -308,7 +305,7 @@ int main()
 			case ALLEGRO_EVENT_KEY_DOWN:
 				if (ev.get().keyboard.keycode == ALLEGRO_KEY_ESCAPE) runn = false;
 				continue;
-			case 1024: // DRAG AND DROP
+			/*case 1024: // DRAG AND DROP
 			{
 				Drop_event mev(ev);
 				fancy_mouse.update();
@@ -329,7 +326,7 @@ int main()
 				}
 
 			}
-				break;
+				break;*/
 			//case ALLEGRO_EVENT_AUDIO_STREAM_FRAGMENT:
 			//	loggin << "Got slice:\n";
 			//	//{
